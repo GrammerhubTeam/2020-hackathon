@@ -1,6 +1,7 @@
 import Head from 'next/head'
-import HeaderNavbar from "../components/Navbar/HeaderNavbar";
-import Footer from "../components/Footer/Footer";
+import React from 'react';
+import NewNavBar from './Navbar/NewNavBar';
+import BottomNav from './Footer/BottomNav';
 
 const Layout = (props) => (
   <div>
@@ -9,9 +10,11 @@ const Layout = (props) => (
         <link rel="stylesheet" type="text/css" href={'/_next/static/css/styles.chunk.css?v=' + Date.now()} />
       )}
     </Head>
-    <HeaderNavbar />
+    {/* <HeaderNavbar /> */}
+    {/* <NewNavBar /> */}
     {props.children}
-    <Footer />
+    {/* <Footer /> */}
+    <BottomNav />
   </div>
 );
 

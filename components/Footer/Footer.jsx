@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { Container, Row, Col } from "react-bootstrap";
 import css from "./Footer.scss";
+import BottomNav from "components/BottomNav"
 
 const Footer = () => {
   return (
     <div className={css.footer}>
-      <Container>
+      {/* <BottomNav /> */}
+      {/* <Container>
         <Row>
           <Col sm="5">
             <div className={css.footerLogo}>
@@ -32,7 +34,7 @@ const Footer = () => {
             </div>
           </Col>
         </Row>
-      </Container>
+      </Container> */}
     </div>
   );
 };
