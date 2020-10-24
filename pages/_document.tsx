@@ -1,4 +1,4 @@
-import Document, { Head, Main, NextScript } from "next/document";
+import Document, { Html, Head, Main, NextScript } from "next/document";
 
 import "../static/css/normalize.css";
 // import "../static/css/style.css";
@@ -16,7 +16,7 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <html>
+      <Html>
         <Head>
           {/* <link href="../static/css/normalize.css" rel="stylesheet"></link>
           <link href="../static/MyCalendar.css" rel="stylesheet"></link>
@@ -27,6 +27,7 @@ class MyDocument extends Document {
             integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
             crossOrigin="anonymous"
           ></link>
+          <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet" crossOrigin="anonymous"></link>
           <script
             src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"
             integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
@@ -57,7 +58,7 @@ class MyDocument extends Document {
             crossOrigin="anonymous"
           ></script>
         </body>
-      </html>
+      </Html>
     );
   }
 }
