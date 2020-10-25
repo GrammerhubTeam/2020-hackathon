@@ -8,6 +8,7 @@ export default class MyApp extends App {
 
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx)
+      console.log('------------', pageProps)
     }
 
     return { pageProps }
@@ -21,8 +22,8 @@ export default class MyApp extends App {
         <Head>
             <title>Grammerhub | Level Up Your Coding Skills - Coming Soon</title>
             <link href="../static/css/normalize.css" rel="stylesheet"></link>
-            <link href="../static/MyCalendar.css" rel="stylesheet"></link>
-            <link href="../static/css/style.css" rel="stylesheet"></link>
+            <link href="../static/css/style.scss" rel="stylesheet"></link>
+            
         </Head>
         <Component {...pageProps} />
       </>

@@ -1,0 +1,115 @@
+.divStyle {
+    justify-content: center;
+    display: Flex;
+    align-items: 'center';
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+
+.center {
+    text-align: center;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 25px;
+}
+
+.space {
+    height: 15;
+}
+
+.footer {
+    // display: flex;
+    // position: absolute;
+    // bottom: 0;
+    margin-top: 30px;
+    width: 90%;
+    text-align: center;
+    border-top: 1px solid black;
+    padding-top: 5px;
+    padding-bottom: 25px;
+    margin-right: 5%;
+    margin-left: 5%
+}
+
+.button, .cancelButton  {
+    width: 220px;
+    background-color: #FE9806;
+    height: 43px;
+    border-radius: 4px;
+    border: none;
+    color: White;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logo  {
+    color: #9B28C4;
+    font-size: 35px;
+    font-family: "Bangers", cursive
+}
+
+.orange  {
+    color: #FE9806;
+}
+
+.started  {
+    font-size: 20
+}
+
+.picDiv {
+    margin-top: 100px;
+    border-radius: 15px;
+    border: solid;
+    border-width: 1px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cancelButton {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.item, .itemMid {
+    justify-content: center;
+    display: Flex;
+    align-items: 'center';
+    height: 40px;
+    justify-content: space-between;
+    // vertical-align: 50%;
+    // padding-bottom: 5px;
+    //height: auto;
+    .tex {
+        margin-top: 10px;
+        margin-left: 5px;
+        font-size: 12px;
+    }
+
+    .matI {
+        // margin: 0 !important;
+        margin-top: 10px;
+        margin-right: 5px;
+        font-size: 25px !important;
+        color: rgb(38, 133, 211);
+    }
+}
+
+.itemMid {
+    border-top: solid;
+    border-bottom: solid;
+    border-width: 1px;
+}
+
+.gt {
+    font-size: 25px;
+}
+
+.purple {
+    color: #9B28C4;
+    font-weight: bolder;
+    font-size: 14px;
+    height: auto;
+}
