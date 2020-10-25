@@ -55,7 +55,9 @@ const About = () => {
         </Typography>
         <Button color="inherit">Login</Button>
       </Toolbar>
+      <Story />
     </AppBar>
+      
     {isBrowser && QrReader && <QrReader
       delay={300}
       style={previewStyle}
