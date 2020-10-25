@@ -4,8 +4,7 @@ import Layout from "../components/MyLayout";
 // import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Button, IconButton, /*makeStyles,*/ Toolbar, Typography } from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu';
-import Story from "../Services/Story";
-
+import Story from "Services/Story";
 
 // const useStyles = makeStyles((theme) => ({
 //   root: {
