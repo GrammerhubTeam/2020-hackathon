@@ -1,4 +1,5 @@
 import css from '../StartPage/StartPage.scss'
+// import Link from 'next/link'
 
 export const StartPage = () => {
 
@@ -11,7 +12,7 @@ export const StartPage = () => {
                     Grammerhood
                 </div>
                 <div className={`${css.centerTex} ${css.h55p}`}><h2>Are you ready,</h2> <h4>for treat of time?</h4></div>
-                <div className={`${css.center} ${css.h25p}`}><button className={`${css.button}`}>Ready?</button></div>
+                <div className={`${css.center} ${css.h25p}`}><a href="/signup"><button className={`${css.button}`}>Ready?</button></a></div>
                 
                 {/* <div className={`${css.h15p} ${css.footer}`}>
                     <i className={`material-icons ${css.matI}`}>reorder</i>

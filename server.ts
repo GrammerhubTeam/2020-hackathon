@@ -10,6 +10,7 @@ import axios from 'axios'
 import api from './api'
 
 interface INeighborhood {
+  id: number
   neighborhoodId: string,
   Name: string,
   City: string,
@@ -123,10 +124,49 @@ app.prepare()
   })
 
   server.post('/register-treater', async (req, res) => {
-    const body = req.body as IAxRegisterTreaterReqBody
+    const defaults: IAxRegisterTreaterReqBody = {
+        treaterId: "fh7gy38b93b2bb29b2di92b92di",
+        username: "kyle",
+        neighborhoodId: '7g2d838h82d8g828g48',
+        email: "kyle@us.com",
+        password: "Grammerhub101",
+        provider: "local",
+        confirmed: true,
+        blocked: false,
+        role: {
+        id: 4,
+        name: "treater",
+        description: "Trick or Treater",
+        type: "treater"
+        },
+        created_at: "2020-10-24T23:03:39.693Z",
+        updated_at: "2020-10-24T23:04:44.672Z",
+        Phone: null,
+        photoLink: null,
+        age: null,
+        visitedStories: [],
+        neighborhoods: [
+          {
+            id: 1,
+            Name: "Neighborhood 1",
+            City: "Bushwick",
+            State: "FL",
+            QRLink: null,
+            OrgName: null,
+            published_at: null,
+            created_at: "2020-10-24T23:04:26.347Z",
+            updated_at: "2020-10-24T23:04:26.357Z",
+            neighborhoodId: '7g2d838h82d8g828g48',
+            houses: [],
+          },
+        ] 
+    }
+    
+    const body = { ...defaults, ...req.body } as IAxRegisterTreaterReqBody
+
     try {
       const resp = await axios.post(`http://localhost:1337/auth/local/register`, body)
-      res.send({ error: false, datum: resp.data, id: body.treaterId })
+      res.send({ error: false, datum: resp.data, sent: { ...defaults, ...req.body }, id: body.treaterId })
     } catch (err) {
       console.log(err)
       res.send({ error: true, datum: err })
