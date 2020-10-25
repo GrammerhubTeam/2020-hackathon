@@ -56,14 +56,17 @@ padding: '0 1rem'
     
 }
 
-
-const name={
-  marginBottom: 30,
-  fontSize: 30,
-  textAlign : "center"
-      
-  }
-
+  const name={
+    marginBottom: 30,
+    fontSize: 41,
+    textAlign: "center",
+    paddingRight: 15,
+    paddingLeft: 15
+  
+        
+    }
+  
+  
 
 
 // const array = {

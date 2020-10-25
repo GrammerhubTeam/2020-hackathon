@@ -1,12 +1,14 @@
 import React from "react";
-import Layout from "../components/MyLayout";
-import Hero from "../components/Home/Hero/Hero";
+
 import StartPage from "../components/StartPage/StartPage";
+import ThankYou from "../components/StartPage/ThankYou";
 
 const Home = () => {
   return (
 
     <StartPage />
+
+    // <ThankYou />
   );
 };
 

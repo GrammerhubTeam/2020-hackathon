@@ -1,6 +1,6 @@
-import { BottomNavigation, BottomNavigationAction /*, makeStyles*/ } from "@material-ui/core";
-import React from "react";
 import axios from 'axios'
+import { BottomNavigation, BottomNavigationAction} from "@material-ui/core";
+import React, { CSSProperties } from "react";
 import ArrowBack from "@material-ui/icons/ArrowBack";
 import ArrowForward from "@material-ui/icons/ArrowForward";
 import Camera from "@material-ui/icons/Camera"
@@ -16,7 +16,7 @@ if (typeof window !== 'undefined') {
 //   },
 // });
 
-const style = {
+const style: CSSProperties = {
     position: "absolute",
     bottom: 0,
     width: "100%",
