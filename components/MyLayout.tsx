@@ -14,6 +14,7 @@ const Layout = (props) => (
     {/* <NewNavBar /> */}
     {props.children}
     {/* <Footer /> */}
+  
     <BottomNav />
   </div>
 );
