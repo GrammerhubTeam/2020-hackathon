@@ -33,7 +33,8 @@ export default () => {
         </Typography>
         <Button color="inherit">Login</Button>
       </Toolbar>
+      <Story />
     </AppBar>
-    <Story />
+   
   </Layout>
 )};
