@@ -1,4 +1,5 @@
 import React from "react";
+import axios from 'axios';
 import Layout from "../components/MyLayout";
 // import AboutUs from "../components/Home/AboutUs/AboutUs";
 // import { makeStyles } from '@material-ui/core/styles';
@@ -20,13 +21,46 @@ import Story from "Services/Story";
 // }));
 
 
-const About = () => {
+const StoryPage = (props: any) => {
+  const [idx, setIdx] = React.useState(0)
+
+  const onNextStory = () => {
+    if (idx < (props.stories?.length || 0)) {
+      setIdx(idx + 1)
+    }
+  }
   
   // const classes = useStyles();
   return (
-  <Layout>
-    <Story />
+  <Layout onNextStory={onNextStory}>
+    <AppBar position="static">
+      <Toolbar>
+        <IconButton edge="start" /*className={classes.menuButton}*/ color="inherit" aria-label="menu">
+          <MenuIcon />
+        </IconButton>
+        <Typography variant="h6" /*className={classes.title}*/>
+          News
+        </Typography>
+        <Button color="inherit">Login</Button>
+      </Toolbar>
+      {/* <Story /> */}
+    </AppBar>
+      
+    
+    <Story idx={idx} stories={props.stories} />
   </Layout>
 )};
 
-export default About;
+StoryPage.getInitialProps = async (props: any) => {
+  try {
+    const storiesResp = await axios.get('https://arcane-depths-05392.herokuapp.com/stories')
+    return {
+      stories: storiesResp.data
+    }
+  } catch (err) {
+    console.log('STORIES ERR', err)
+    return {}
+  }
+}
+
+export default StoryPage;

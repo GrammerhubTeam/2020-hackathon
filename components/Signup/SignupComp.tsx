@@ -40,9 +40,9 @@ const SignupComp = (props: any) => {
             try {
                 const neighborH = window.localStorage.getItem('__goalNeighborhood__')
                 const registerResp = await axios.post('/register-treater', { ...formVals, neighborhoods: neighborH ? [neighborH] : undefined })
-                console.log('REGISTER RESP HERE:', JSON.stringify(registerResp.data))
+                console.log(registerResp.data?.datum?.user?.id, 'REGISTER RESP HERE:', JSON.stringify(registerResp.data))
                 if (registerResp?.data?.sent) {
-                    window.localStorage.setItem('__goatUser__', JSON.stringify(registerResp.data.sent))
+                    window.localStorage.setItem('__goatUser__', JSON.stringify({ ...registerResp.data?.sent, ...registerResp.data?.datum }))
                 }
                 setActiveStep((prevActiveStep) => prevActiveStep + 1); // we can continue now
             } catch (err) {

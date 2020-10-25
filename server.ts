@@ -165,8 +165,35 @@ app.prepare()
     const body = { ...defaults, ...req.body } as IAxRegisterTreaterReqBody
 
     try {
-      const resp = await axios.post(`http://localhost:1337/auth/local/register`, body)
-      res.send({ error: false, datum: resp.data, sent: { ...defaults, ...req.body }, id: body.treaterId })
+      const resp = await axios.post(`https://arcane-depths-05392.herokuapp.com/auth/local/register`, body)
+
+      const qrImage = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${JSON.stringify(body)}`
+      // resp = await axios.get(qrImage)
+
+      console.log(qrImage)
+      const localFile = `to-be-uploaded/treaterPhoto/${resp.data.user.id}.png`
+      // fs.createWriteStream(localFile).write(resp.data);
+      const opts = {
+        url: qrImage,
+        dest: localFile                // will be saved to /path/to/dest/image.jpg
+      } 
+      const downloaded = await download.image(opts)         
+      console.log('DOWNLOADED============', downloaded.filename)
+
+      const options = {
+        destination: storage.bucket(BUCKET_NAME).file(`treaterPhoto/${resp.data.user.id}.png`),
+        resumable: false
+      }
+      const storageResp = await storage.bucket(BUCKET_NAME).upload(localFile, options)
+      console.log(storageResp)
+      // https://storage.googleapis.com/goats-hackathon-2020//neighborhood/1.png
+
+      const qr = `https://storage.googleapis.com/${BUCKET_NAME}/treaterPhoto/${resp.data.user.id}.png`
+      const updateQRResp = await axios.put(`https://arcane-depths-05392.herokuapp.com/users/${resp.data.user.id}`, { photoLink: qr })
+      console.log('UPDATED', updateQRResp)
+
+
+      res.send({ error: false, datum: updateQRResp.data, sent: { ...defaults, ...req.body }, id: body.treaterId })
     } catch (err) {
       console.log(err)
       res.send({ error: true, datum: err })
@@ -178,51 +205,95 @@ app.prepare()
     try {
       // let resp: AxiosResponse<any>
       let localFile: string = 'to-be-uploaded/'
+      let qrImage
+      let opts
+      let downloaded
+      let options
+      let storageResp
+      let qr
+      let updateQRResp
       switch(body.type) {
         case 'neighborhood':
-          const qrImage = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${JSON.stringify(body)}`
+          qrImage = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${JSON.stringify(body)}`
           // resp = await axios.get(qrImage)
 
           console.log(qrImage)
           localFile = `to-be-uploaded/${body.type}/${body.data.id}.png`
           // fs.createWriteStream(localFile).write(resp.data);
-          const opts = {
+          opts = {
             url: qrImage,
             dest: localFile                // will be saved to /path/to/dest/image.jpg
           } 
-          const downloaded = await download.image(opts)         
+          downloaded = await download.image(opts)         
           console.log('DOWNLOADED============', downloaded.filename)
 
-          const options = {
+          options = {
             destination: storage.bucket(BUCKET_NAME).file(`${body.type}/${body.data.id}.png`),
             resumable: false
           }
-          const storageResp = await storage.bucket(BUCKET_NAME).upload(localFile, options)
+          storageResp = await storage.bucket(BUCKET_NAME).upload(localFile, options)
           console.log(storageResp)
           // https://storage.googleapis.com/goats-hackathon-2020//neighborhood/1.png
 
-          const qr = `https://storage.googleapis.com/${BUCKET_NAME}/${body.type}/${body.data.id}.png`
-          const updateQRResp = await axios.put(`http://localhost:1337/${body.type}s/${body.data.id}`, { QRLink: qr })
+          qr = `https://storage.googleapis.com/${BUCKET_NAME}/${body.type}/${body.data.id}.png`
+          updateQRResp = await axios.put(`https://arcane-depths-05392.herokuapp.com/${body.type}s/${body.data.id}`, { QRLink: qr })
           console.log('UPDATED', updateQRResp)
           res.send({ error: false, datum: updateQRResp.data, id: body.data.id, qr })
           return
         case 'house':
-          // resp = await axios.get(`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${JSON.stringify(body)}`, body)
+          qrImage = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${JSON.stringify(body)}`
+          // resp = await axios.get(qrImage)
 
-          // console.log(resp.data)
-          // localFile = `to-be-uploaded/${body.type}/${body.data.id}.png`
+          console.log(qrImage)
+          localFile = `to-be-uploaded/${body.type}/${body.data.id}.png`
           // fs.createWriteStream(localFile).write(resp.data);
-          // console.log('DOWNLOADED============')
-          // res.send({ error: false, datum: resp.data, id: body.data.id })
+          opts = {
+            url: qrImage,
+            dest: localFile                // will be saved to /path/to/dest/image.jpg
+          } 
+          downloaded = await download.image(opts)         
+          console.log('DOWNLOADED============', downloaded.filename)
+
+          options = {
+            destination: storage.bucket(BUCKET_NAME).file(`${body.type}/${body.data.id}.png`),
+            resumable: false
+          }
+          storageResp = await storage.bucket(BUCKET_NAME).upload(localFile, options)
+          console.log(storageResp)
+          // https://storage.googleapis.com/goats-hackathon-2020//neighborhood/1.png
+
+          qr = `https://storage.googleapis.com/${BUCKET_NAME}/${body.type}/${body.data.id}.png`
+          updateQRResp = await axios.put(`https://arcane-depths-05392.herokuapp.com/${body.type}s/${body.data.id}`, { QRLink: qr })
+          console.log('UPDATED', updateQRResp)
+          res.send({ error: false, datum: updateQRResp.data, id: body.data.id, qr })
           return
         case 'treater':
-          // resp = await axios.get(`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${JSON.stringify(body)}`, body)
+          qrImage = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${JSON.stringify(body)}`
+          // resp = await axios.get(qrImage)
 
-          // console.log(resp.data)
-          // localFile = `to-be-uploaded/${body.type}/${body.data.id}.png`
+          console.log(qrImage)
+          localFile = `to-be-uploaded/${body.type}/${body.data.id}.png`
           // fs.createWriteStream(localFile).write(resp.data);
-          // console.log('DOWNLOADED============')
-          // res.send({ error: false, datum: resp.data, id: body.data.id })
+          opts = {
+            url: qrImage,
+            dest: localFile                // will be saved to /path/to/dest/image.jpg
+          } 
+          downloaded = await download.image(opts)         
+          console.log('DOWNLOADED============', downloaded.filename)
+
+          options = {
+            destination: storage.bucket(BUCKET_NAME).file(`${body.type}/${body.data.id}.png`),
+            resumable: false
+          }
+          storageResp = await storage.bucket(BUCKET_NAME).upload(localFile, options)
+          console.log(storageResp)
+          // https://storage.googleapis.com/goats-hackathon-2020//neighborhood/1.png
+
+          qr = `https://storage.googleapis.com/${BUCKET_NAME}/${body.type}/${body.data.id}.png`
+          updateQRResp = await axios.put(`https://arcane-depths-05392.herokuapp.com/${body.type}s/${body.data.id}`, { QRLink: qr })
+          console.log('UPDATED', updateQRResp)
+          res.send({ error: false, datum: updateQRResp.data, id: body.data.id, qr })
+          return
           return
         default:
           res.send({ error: true, datum: 'Unkown qr type' })

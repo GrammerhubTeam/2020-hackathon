@@ -129,26 +129,27 @@ const useStyles = makeStyles({
   
 
 const Story = (props: any) => { 
-  const [data, setData] = useState<any[]>([])
-  async function Halloweenie () {
+  // const [data, setData] = useState<any[]>([])
+  // async function Halloweenie () {
 
-    const res = await axios.get('https://arcane-depths-05392.herokuapp.com/stories')
-    const datas = res.data;
-    setData(datas);
-    console.log('DATASSSSS', datas);
+  //   const res = await axios.get('https://arcane-depths-05392.herokuapp.com/stories')
+  //   const datas = res.data;
+  //   setData(datas);
+  //   console.log('DATASSSSS', datas);
 
 
-    return { story: services}
-  }
+  //   return { story: services}
+  // }
 
-  useEffect(() => {
-    Halloweenie();
+  // useEffect(() => {
+  //   console.log('THESE ARE MY STORIES', props.stories)
+  //   // Halloweenie();
 
-   }, [])
+  //  }, [])
 
-   useEffect(() => {
-    console.log(data);
-    }, [data])
+  //  useEffect(() => {
+  //   console.log(data);
+  //   }, [data])
 
 
 
@@ -157,12 +158,12 @@ const Story = (props: any) => {
    return (<div style={story}>
         <div style={image}>
       
-         <img src={data[0]?.photoLink} style={{ maxWidth: '100%' }} />  
+         <img src={props.stories[props.idx]?.photoLink} style={{ maxWidth: '100%' }} />  
         </div>
     
-        <div style={name}>{data[0]?.name}</div>
+        <div style={name}>{props.stories[props.idx]?.name}</div>
     
-    <div style={header}>{data[0]?.text}</div>
+    <div style={header}>{props.stories[props.idx]?.text}</div>
 
     </div>)
     // <div>{JSON.stringify(props?.story)

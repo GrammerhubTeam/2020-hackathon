@@ -15,7 +15,7 @@ const Layout = (props) => (
     {props.children}
     {/* <Footer /> */}
   
-    <BottomNav />
+    <BottomNav onNextStory={props.onNextStory} />
   </div>
 );
 
