@@ -165,7 +165,7 @@ app.prepare()
     const body = { ...defaults, ...req.body } as IAxRegisterTreaterReqBody
 
     try {
-      const resp = await axios.post(`http://localhost:1337/auth/local/register`, body)
+      const resp = await axios.post(`https://arcane-depths-05392.herokuapp.com/auth/local/register`, body)
 
       const qrImage = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${JSON.stringify(body)}`
       // resp = await axios.get(qrImage)
@@ -189,7 +189,7 @@ app.prepare()
       // https://storage.googleapis.com/goats-hackathon-2020//neighborhood/1.png
 
       const qr = `https://storage.googleapis.com/${BUCKET_NAME}/treaterPhoto/${resp.data.user.id}.png`
-      const updateQRResp = await axios.put(`http://localhost:1337/users/${resp.data.user.id}`, { photoLink: qr })
+      const updateQRResp = await axios.put(`https://arcane-depths-05392.herokuapp.com/users/${resp.data.user.id}`, { photoLink: qr })
       console.log('UPDATED', updateQRResp)
 
 
@@ -236,7 +236,7 @@ app.prepare()
           // https://storage.googleapis.com/goats-hackathon-2020//neighborhood/1.png
 
           qr = `https://storage.googleapis.com/${BUCKET_NAME}/${body.type}/${body.data.id}.png`
-          updateQRResp = await axios.put(`http://localhost:1337/${body.type}s/${body.data.id}`, { QRLink: qr })
+          updateQRResp = await axios.put(`https://arcane-depths-05392.herokuapp.com/${body.type}s/${body.data.id}`, { QRLink: qr })
           console.log('UPDATED', updateQRResp)
           res.send({ error: false, datum: updateQRResp.data, id: body.data.id, qr })
           return
@@ -263,7 +263,7 @@ app.prepare()
           // https://storage.googleapis.com/goats-hackathon-2020//neighborhood/1.png
 
           qr = `https://storage.googleapis.com/${BUCKET_NAME}/${body.type}/${body.data.id}.png`
-          updateQRResp = await axios.put(`http://localhost:1337/${body.type}s/${body.data.id}`, { QRLink: qr })
+          updateQRResp = await axios.put(`https://arcane-depths-05392.herokuapp.com/${body.type}s/${body.data.id}`, { QRLink: qr })
           console.log('UPDATED', updateQRResp)
           res.send({ error: false, datum: updateQRResp.data, id: body.data.id, qr })
           return
@@ -290,7 +290,7 @@ app.prepare()
           // https://storage.googleapis.com/goats-hackathon-2020//neighborhood/1.png
 
           qr = `https://storage.googleapis.com/${BUCKET_NAME}/${body.type}/${body.data.id}.png`
-          updateQRResp = await axios.put(`http://localhost:1337/${body.type}s/${body.data.id}`, { QRLink: qr })
+          updateQRResp = await axios.put(`https://arcane-depths-05392.herokuapp.com/${body.type}s/${body.data.id}`, { QRLink: qr })
           console.log('UPDATED', updateQRResp)
           res.send({ error: false, datum: updateQRResp.data, id: body.data.id, qr })
           return

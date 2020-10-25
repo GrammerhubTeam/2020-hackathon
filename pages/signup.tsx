@@ -19,7 +19,7 @@ const Signup = (props: any) => {
 Signup.getInitialProps = async (_props: any) => {
     try {
         let neighborhood = null
-        const neighborhoodResponse = await axios.get('http://localhost:1337/neighborhoods')
+        const neighborhoodResponse = await axios.get('https://arcane-depths-05392.herokuapp.com/neighborhoods')
         console.log(neighborhoodResponse.data)
         if (Array.isArray(neighborhoodResponse.data) && neighborhoodResponse.data.length) {
             neighborhood = neighborhoodResponse.data[0] // temporary for demo

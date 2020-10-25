@@ -35,7 +35,7 @@ export default function BottomNav(props: any) {
     try {
       const beenVisited = user.visitedStories?.filter(s => s === visitedId)
       if (!beenVisited?.length) {
-        const updateResp = await axios.put(`http://localhost:1337/users/${user.id}`, {
+        const updateResp = await axios.put(`https://arcane-depths-05392.herokuapp.com/users/${user.id}`, {
           visitedStories: [ ...(user.visitedStories || []), visitedId ]
         })
         console.log('WHOAAAAAA', updateResp.data)
