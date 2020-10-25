@@ -9,6 +9,7 @@ import Card from '@material-ui/core/Card';
 // import Typography from '@material-ui/core/Typography';
 // import css from 'static\css\style.scss'
 import services from './services.js'
+import axios from 'axios';
 // import Layout from "components/MyLayout";
 
 
@@ -25,7 +26,9 @@ interface IProps {
 const story: CSSProperties= {    
 
 backgroundColor: "#FE9806",
-width: "fit-content",
+// width: "fit-content",
+position: 'relative',
+height: '85vh'
 // justifyContent: "center",
 // display: "Flex",
 // flexDirection: "column",
@@ -39,20 +42,23 @@ width: "fit-content",
 }
 
 const image=  {
-  height: "80vh",
-  textAlign: "center"
+  maxHeight: "50vh",
+  maxWidth: '100%',
+  textAlign: "center",
+  position: 'relative'
 
 }
 
 const header={
-marginBottom: 50,
-fontSize: 30,
+marginBottom: 10,
+fontSize: 15,
+padding: '0 1rem'
     
 }
 
 
 const name={
-  marginBottom: 50,
+  marginBottom: 30,
   fontSize: 30,
   textAlign : "center"
       
@@ -123,10 +129,10 @@ const Story = (props: any) => {
   const [data, setData] = useState<any[]>([])
   async function Halloweenie () {
 
-    const res = await fetch('https://arcane-depths-05392.herokuapp.com/stories')
-    const datas = await res.json();
+    const res = await axios.get('https://arcane-depths-05392.herokuapp.com/stories')
+    const datas = res.data;
     setData(datas);
-    console.log(datas);
+    console.log('DATASSSSS', datas);
 
 
     return { story: services}
@@ -148,14 +154,12 @@ const Story = (props: any) => {
    return (<div style={story}>
         <div style={image}>
       
-         <img src={data[0]?.photoLink} />  
+         <img src={data[0]?.photoLink} style={{ maxWidth: '100%' }} />  
         </div>
     
-        <div style={name}>{data[0]?.name} 
+        <div style={name}>{data[0]?.name}</div>
     
-    <div style={header}>{data[0]?.text} 
-    </div>
-    </div>
+    <div style={header}>{data[0]?.text}</div>
 
     </div>)
     // <div>{JSON.stringify(props?.story)

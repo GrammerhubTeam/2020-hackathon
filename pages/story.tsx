@@ -4,10 +4,7 @@ import Layout from "../components/MyLayout";
 // import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Button, IconButton, /*makeStyles,*/ Toolbar, Typography } from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu';
-let QrReader: any = null
-if (typeof window !== 'undefined') {
-  QrReader = require('react-qr-reader')
-}
+
 import Story from "Services/Story";
 
 // const useStyles = makeStyles((theme) => ({
@@ -24,24 +21,7 @@ import Story from "Services/Story";
 
 
 const About = () => {
-  const isBrowser = typeof window !== 'undefined'
-  const [result, setResult] = React.useState<any>('No Result')
-  React.useEffect(() => {
-    console.log(result)
-  }, [result])
-
-  const previewStyle = {
-    height: 450,
-    // width: 320,
-    width: '100%'
-  }
-
-  const handleScan = (data: any) => {
-    if (data) setResult(data)
-  }
-  const handleError = (err: any) => {
-    console.log("ERRRR:", err)
-  }
+  
   // const classes = useStyles();
   return (
   <Layout>
@@ -55,15 +35,10 @@ const About = () => {
         </Typography>
         <Button color="inherit">Login</Button>
       </Toolbar>
-      <Story />
+      {/* <Story /> */}
     </AppBar>
       
-    {isBrowser && QrReader && <QrReader
-      delay={300}
-      style={previewStyle}
-      onError={handleError}
-      onScan={handleScan}
-    />}
+    
     <Story />
   </Layout>
 )};
