@@ -1,11 +1,14 @@
 const Cloud = require('@google-cloud/storage')
-const path = require('path')
-const serviceKey = path.join(__dirname, './temp-vals-y-llaves-7834gb84brnf9b4n9.json')
+require('dotenv').config()
 
 const { Storage } = Cloud
 const storage = new Storage({
-  keyFilename: serviceKey,
+//   keyFilename: serviceKey,
   projectId: 'inlaid-water-273807',
+  credentials: {
+      client_email: process.env.CLIENT_EMAIL,
+      private_key: process.env.PRIVATE_KEY
+  }
 })
 
 module.exports = storage
